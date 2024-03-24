@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { MindmapTest } from "./jsmind-test";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-around",
+        width: "100%",
+        height: "100%",
+      }}
+    >
+      {/* 这里不设置大小，会显示不出来。因为 jsmind 生成的 jsmind-inner div 中设置了 position: relative  */}
+      <div style={{ width: "100vh", height: "100vh" }}>
+        <MindmapTest />
+      </div>
     </div>
   );
 }
