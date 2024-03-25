@@ -18,7 +18,8 @@ const MindmapTest = () => {
     // import ReactDOM from "react-dom/client";
     // const root = ReactDOM.createRoot(element);
     // root.render(<span>{node.topic}</span>);
-    ReactDOM.render(<span>{node.topic}</span>, element)
+    // ReactDOM.render(<span>{node.topic}</span>, element)
+    element.innerHTML = `<span>${node.topic}</span>`
     return true
   }
 
