@@ -18,8 +18,23 @@ const MindmapTest = () => {
     // import ReactDOM from "react-dom/client";
     // const root = ReactDOM.createRoot(element);
     // root.render(<span>{node.topic}</span>);
-    ReactDOM.render(<span>{node.topic}</span>, element)
-    return true
+    // ReactDOM.render(<span>{node.topic}</span>, element, () => {
+    //   setTimeout(() => {
+    //     console.log("interval")
+    //   }, 1000)
+    // })
+
+    //console.log("[nodeRenderTest] element:", element)
+    const obj = new Promise((resolve, reject) => {
+      //ReactDOM.unmountComponentAtNode(element);
+      element.innerHTML = ""
+      ReactDOM.render(<span>{node.topic}</span>, element, () => {
+        resolve(true) // 解决Promise
+        console.log("[nodeRenderTest] ReactDOM render callback 返回")
+      })
+    })
+    //console.log("3. custom_node_render 返回")
+    return obj
   }
 
   useEffect(() => {
@@ -42,15 +57,21 @@ const MindmapTest = () => {
       meta: { name: "", author: "", version: "" },
       format: "node_array",
       data: [
-        { id: "root", topic: "前端库", isroot: true },
-        { id: "1", topic: "脑图(custom_node_render展开按钮被遮蔽了)", parentid: "root", expanded: false },
+        { id: "root", topic: "大模型", isroot: true },
+        {
+          id: "1",
+          topic: "脑图(custom_node_render展开按钮被遮蔽了)",
+          parentid: "root",
+          expanded: false,
+        },
         { id: "11", topic: "JSMind", parentid: "1" },
         { id: "2", topic: "流程图", parentid: "root", expanded: false },
         { id: "21", topic: "PlantUML", parentid: "2" },
       ],
     })
-
-    jm.current.resize()
+    setTimeout(() => {
+      jm.current.resize()
+    }, 2001)
   })
 
   return <div ref={jmContainer} style={{ width: "100%", height: "100%" }} />
